@@ -17,6 +17,7 @@ api.add_namespace(address_ns)
 model = address_ns.model('Address', {
     'id': fields.Integer(readOnly=True, description='The unique identifier of an address'),
     'street': fields.String(required=True, description='Street name'),
+    'number': fields.String(required=False, description='House number'),
     'city': fields.String(required=True, description='City name'),
     'state': fields.String(required=True, description='State name'),
     'cep': fields.String(required=True, description='Postal code'),
@@ -27,10 +28,26 @@ model = address_ns.model('Address', {
 # Resource for listing and creating addresses
 @address_ns.route('/mm-address/')
 class AddressList(Resource):
+    @address_ns.doc(params={'q': 'Query string to search for in addresses'})
     @address_ns.marshal_list_with(model)
     def get(self):
-        """List all addresses"""
-        addresses = Address.query.all()
+        """List all addresses or search by query string"""
+        query = request.args.get('q')
+        if query:
+            search_filter = f"%{query.lower()}%"
+            addresses = Address.query.filter(
+                db.or_(
+                    db.func.lower(Address.street).ilike(search_filter),
+                    db.func.lower(Address.number).ilike(search_filter),
+                    db.func.lower(Address.city).ilike(search_filter),
+                    db.func.lower(Address.state).ilike(search_filter),
+                    db.func.lower(Address.cep).ilike(search_filter),
+                    db.func.lower(Address.neighborhood).ilike(search_filter),
+                    db.func.lower(Address.complement).ilike(search_filter),
+                )
+            ).all()
+        else:
+            addresses = Address.query.all()
         return addresses
 
     @address_ns.expect(model)

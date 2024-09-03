@@ -5,6 +5,7 @@ from . import db  # Import the db instance from __init__.py
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     street = db.Column(db.String(128), nullable=False)
+    number = db.Column(db.String(10), nullable=True)
     city = db.Column(db.String(64), nullable=False)
     state = db.Column(db.String(64), nullable=False)
     cep = db.Column(db.String(20), nullable=False)
@@ -12,4 +13,4 @@ class Address(db.Model):
     complement = db.Column(db.String(128), nullable=True)
 
     def __repr__(self):
-        return f"<Address {self.street}, {self.city}, {self.state}>"
+        return f"<Address {self.street}, {self.number}, {self.city}, {self.state}>"

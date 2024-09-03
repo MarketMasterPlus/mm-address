@@ -9,6 +9,7 @@ CREATE DATABASE marketmaster;
 CREATE TABLE IF NOT EXISTS address (
     id SERIAL PRIMARY KEY,
     street VARCHAR(128) NOT NULL,
+    number VARCHAR(10),
     city VARCHAR(64) NOT NULL,
     state VARCHAR(64) NOT NULL,
     cep VARCHAR(20) NOT NULL,
