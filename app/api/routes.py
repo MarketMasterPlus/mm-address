@@ -55,6 +55,7 @@ class AddressList(Resource):
     def post(self):
         """Create a new address"""
         data = request.json
+        print(data)
         address = Address(**data)
         db.session.add(address)
         db.session.commit()

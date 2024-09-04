@@ -1,12 +1,11 @@
-# mm-address/docker-compose.yml
-
 version: '3.8'
 
 services:
   db:
     image: postgres:latest
+    container_name: mm-address-db
     environment:
-      POSTGRES_DB: postgres  # The initial database to connect to
+      POSTGRES_DB: marketmaster
       POSTGRES_USER: marketmaster
       POSTGRES_PASSWORD: password
     volumes:
@@ -14,9 +13,12 @@ services:
       - ./db/mm-address.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
+    networks:
+      - marketmaster-network
 
   address_service:
-    build: .  # Build context set to project root
+    build: .
+    container_name: mm-address
     ports:
       - "5700:5700"
     depends_on:
@@ -25,7 +27,13 @@ services:
       FLASK_APP: app.py
       FLASK_ENV: development
     volumes:
-      - .:/app  # Map the project root to /app in the container
+      - .:/app
+    networks:
+      - marketmaster-network
 
 volumes:
   postgres_data:
+
+networks:
+  marketmaster-network:
+    external: true
