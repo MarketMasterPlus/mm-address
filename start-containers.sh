@@ -26,11 +26,25 @@ else
     echo "Docker network $NETWORK_NAME already exists"
 fi
 
-# Run Docker Compose
+# Handle arguments for Docker Compose
 DETACHED_MODE=""
-if [[ $1 == "-d" ]]; then
-    DETACHED_MODE="-d"
-fi
+BUILD_MODE=""
 
-echo "Starting Docker Compose..."
-docker compose up $DETACHED_MODE
+for arg in "$@"; do
+    case $arg in
+        -d|--detach)
+        DETACHED_MODE="-d"
+        shift # remove argument from processing
+        ;;
+        --build)
+        BUILD_MODE="--build"
+        shift # remove argument from processing
+        ;;
+        *)
+        ;;
+    esac
+done
+
+# Run Docker Compose
+echo "Starting Docker Compose with options: $BUILD_MODE $DETACHED_MODE"
+docker compose up $BUILD_MODE $DETACHED_MODE
