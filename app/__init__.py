@@ -19,7 +19,7 @@ def create_app():
     # Load database configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
         'DATABASE_URL',
-        'postgresql://marketmaster:password@db:5432/marketmaster'
+        'postgresql://marketmaster:password@mm-address-db:5432/marketmaster'
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
