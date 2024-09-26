@@ -74,25 +74,25 @@ The `docker-compose.yml` for this project configures the `mm-address` service al
   ```bash
   curl http://localhost:5700/mm-address/?q=streetname
   ```
-- **POST /mm-address/
+- **POST /mm-address/**
   Creates a new address record by submitting a JSON payload.
   Example:
   ```bash
   curl -X POST http://localhost:5700/mm-address/ -H "Content-Type: application/json" -d '{"street": "Rua A", "city": "Patos", "state": "PB", "cep": "58700123"}'
   ```
-- **GET /mm-address/{id}
+- **GET /mm-address/{id}**
   Retrieves an address by its unique identifier.
   Example:
   ```bash
   curl http://localhost:5700/mm-address/1
   ```
-- **PUT /mm-address/{id}
+- **PUT /mm-address/{id}**
   Updates an existing address by submitting a JSON payload with the updated data.
   Example:
   ```bash
   curl -X PUT http://localhost:5700/mm-address/1 -H "Content-Type: application/json" -d '{"city": "Patos Updated"}'
   ```
-- **DELETE /mm-address/{id}
+- **DELETE /mm-address/{id}**
   Deletes an address by its unique identifier.
   Example:
   ```bash
