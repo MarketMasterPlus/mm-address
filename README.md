@@ -6,12 +6,6 @@ Disciplina: Desenvolvimento Back-end Avançado
 Aluno: Rodrigo Alves Costa
 ```
 
-# PUC-Rio  
-**Especialização em Desenvolvimento Fullstack**  
-**Disciplina: Desenvolvimento Back-end Avançado**  
-
-Aluno: Rodrigo Alves Costa  
-
 ## Market Master: Address Management Service
 
 The Market Master project consists of a set of microservices designed to manage different aspects of a supermarket e-commerce platform, providing a unified experience for users to shop from various stores in their city. The `mm-address` service is responsible for managing address information and integrating with external postal code services like ViaCEP to fetch address details automatically.
