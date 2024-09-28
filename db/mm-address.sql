@@ -1,8 +1,5 @@
 -- mm-address/db/mm-address.sql
 
--- Create the marketmaster database
-CREATE DATABASE marketmaster;
-
 \connect marketmaster;
 
 -- Create a table for addresses
