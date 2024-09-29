@@ -20,6 +20,13 @@ The Market Master project consists of a set of microservices designed to manage 
 - [mm-pact-broker](https://github.com/MarketMasterPlus/mm-pact-broker) — Supporting repo holding the Pact Broker for Contract tests
 - [mm-ui](https://github.com/MarketMasterPlus/mm-ui) — UI for Market Master
 
+### ViaCEP Integration
+The `mm-address` service integrates with the [ViaCEP API](https://viacep.com.br/) to fetch address details based on postal codes. The service provides a single endpoint to fetch address details by postal code.
+
+In the mm-address service code, the ViaCEP integration is implemented with an endpoint that will fetch address details based on the postal code provided. 
+
+The endpoint will validate the postal code format and fetch the address details from the ViaCEP API. The response will include the street, city, state, neighborhood, and complement of the address.
+
 ---
 
 ## Quick Start
